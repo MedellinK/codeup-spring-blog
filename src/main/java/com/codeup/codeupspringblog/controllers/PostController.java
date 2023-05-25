@@ -11,19 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PostController {
 
 @GetMapping("/posts")
-    @ResponseBody
     public String allPosts() {
-        return "This is the posts index page!";
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
     public String individualPost() {
-        return "This is the individual post page!";
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String createForm() {
         return "This is the create post page!";
     }

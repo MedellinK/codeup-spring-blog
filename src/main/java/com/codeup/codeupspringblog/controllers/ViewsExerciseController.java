@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ViewsExerciseController {
-    //    //Create a page at /roll-dice that asks the user to guess a number. There should be links on this page for 1 through 6 that should make a GET request to /roll-dice/n where n is the number guessed. This page should display a random number (the dice roll), the user's guess and a message based on whether or not they guessed the correct number.
+    //    //Create a page at /roll-dice that asks the user to guess a number. There should be links on this page for 1 through 6 that should make a GET request to /roll-dice/n where n is the number guessed. This page should display a random number (the dice roll), the user's guess and a message based on wether or not they guessed the correct number.
 
     @GetMapping("/roll-dice")
     public String rollDice() {
@@ -25,7 +25,7 @@ public class ViewsExerciseController {
             model.addAttribute("message", "You guessed the wrong number! You guessed " + guess + " and the number was " + random + "!");
         }
         System.out.println("random number was " + random);
-        System.out.println(guess);
+        System.out.println("your number was" + guess);
         return "roll-dice";
     }
 
