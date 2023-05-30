@@ -1,4 +1,4 @@
-package models;
+package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
@@ -44,6 +44,11 @@ public class Ad {
 
     public Ad(int id, String title, String description) {
         this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Ad(String title, String description) {
         this.title = title;
         this.description = description;
     }

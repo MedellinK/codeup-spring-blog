@@ -1,4 +1,4 @@
-package models;
+package com.codeup.codeupspringblog.models;
 
 public class Coffee {
     private String roast;

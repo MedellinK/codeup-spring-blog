@@ -1,6 +1,6 @@
 package com.codeup.codeupspringblog.controllers;
 
-import models.Coffee;
+import com.codeup.codeupspringblog.models.Coffee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
