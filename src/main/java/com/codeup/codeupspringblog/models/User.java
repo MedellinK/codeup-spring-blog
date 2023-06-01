@@ -2,12 +2,15 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
+//In your User and Post classes, define the post - user relationship.
 @Entity
 @Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long userId;
     @Column(nullable = false, length = 100)
     private String username;
     @Column(nullable = false)
@@ -15,12 +18,15 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public long getId() {
-        return id;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Post> posts;
+
+    public long getUserId() {
+        return userId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUserId(long id) {
+        this.userId = id;
     }
 
     public String getUsername() {
@@ -51,7 +57,7 @@ public class User {
     }
 
     public User(long id, String username, String email, String password) {
-        this.id = id;
+        this.userId = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -62,6 +68,14 @@ public class User {
         this.email = email;
         this.password = password;
 
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
 }

@@ -2,6 +2,9 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+//In your User and Post classes, define the post - user relationship.
+
 @Entity
 @Table(name="posts")
 public class Post {
@@ -15,6 +18,13 @@ public class Post {
 
     @Column(nullable = false ,length= 1000)
     private String body;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> comments;
 
     public String getTitle() {
         return title;
@@ -44,4 +54,28 @@ public class Post {
         this.title = title;
         this.body = body;
     }
+
+    public Post(User user, String title, String body) {
+        this.user = user;
+        this.title = title;
+        this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+
 }
