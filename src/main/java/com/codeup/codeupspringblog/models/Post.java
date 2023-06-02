@@ -26,6 +26,7 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
+
     public String getTitle() {
         return title;
     }
@@ -84,6 +85,7 @@ public class Post {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
 
 
 }

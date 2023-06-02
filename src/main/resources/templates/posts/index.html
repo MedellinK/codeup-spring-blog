@@ -8,7 +8,7 @@
         <div class="row">
             <h1>Explore our PostAVaganza</h1>
         </div>
-        <div class="row">
+        <div class="row grow">
             <ul class="post-grid">
                 <li th:each="post : ${posts}" class="column post">
                     <a th:href="@{|/posts/${post.id}|}"><h2 th:text="${post.title}"></h2></a>
