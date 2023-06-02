@@ -1,5 +1,6 @@
 package com.codeup.codeupspringblog.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String email;
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 

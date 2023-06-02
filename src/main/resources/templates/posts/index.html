@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
+<head th:replace="partials/head :: head"></head>
 <body>
-<h1>All Posts:</h1>
-
-<div th:each="post : ${posts}">
-    <h2 th:text="${post.title}">Title</h2>
-    <p th:text="${post.body}">Body</p>
-    <div th:if="${post.body}"></div>
+<div class="page-wrapper gap-20">
+    <header th:replace="partials/navbar :: navbar"></header>
+    <div class="container gap-20">
+        <div class="row">
+            <h1>Explore our PostAVaganza</h1>
+        </div>
+        <div class="row">
+            <ul class="post-grid">
+                <li th:each="post : ${posts}" class="column post">
+                    <a th:href="@{|/posts/${post.id}|}"><h2 th:text="${post.title}"></h2></a>
+                    <p th:text="${post.body}"></p>
+<!--                    <p th:text="${post.user.email}"></p>-->
+                    <div th:if="${post.comments.size()>0}">
+                        <h3>Comments</h3>
+                        <ul>
+                            <li th:each="comment: ${post.comments}">
+                                <p th:text="${comment.content}"></p>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Index</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>All Posts:</h1>-->
+
+<!--<div th:each="post : ${posts}">-->
+<!--    <h2 th:text="${post.title}">Title</h2>-->
+<!--    <p th:text="${post.body}">Body</p>-->
+<!--    <div th:if="${post.body}"></div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

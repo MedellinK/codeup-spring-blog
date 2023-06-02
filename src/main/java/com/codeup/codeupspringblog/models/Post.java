@@ -69,6 +69,14 @@ public class Post {
         this.user = user;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public List<Comment> getComments() {
         return comments;
     }

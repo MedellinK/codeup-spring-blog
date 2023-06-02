@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 public class PostController {
@@ -29,9 +31,14 @@ public class PostController {
 
 @GetMapping("/posts")
     public String allPosts(Model model) {
-        model.addAttribute("posts", postDao.findAll());
-        postDao.findAll();
-        return "posts/index";
+//        model.addAttribute("posts", postDao.findAll());
+//        postDao.findAll();
+        return "/posts/index";
+    }
+
+    @GetMapping("/api/posts")
+    public @ResponseBody List<Post> getAllPostsButApiStyle() {
+        return postDao.findAll();
     }
 
     @GetMapping("/posts/{id}")
@@ -41,15 +48,31 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String createForm() {
-    return "posts/create";
+    public String createForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
+//    @PostMapping("/posts/create")
+//    public String createPost(@RequestParam (name = "title") String title, @RequestParam (name = "body") String body) {
+//        User user = userDao.findById(1L);
+//        Post post = new Post(user, body, title);
+//
+//        postDao.save(post);
+//        return "redirect:/posts";
+//    }
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam (name = "title") String title, @RequestParam (name = "body") String body) {
-        User user = userDao.getOne(1L);
-        Post post = new Post(user, body, title);
+    public String submitForm(@ModelAttribute Post post) {
+        User user = userDao.findById(1L);
+        post.setUser(user);
         postDao.save(post);
         return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editForm(@PathVariable long id, Model model) {
+        Post post = postDao.findById(id);
+        model.addAttribute("post", new Post());
+        return "posts/edit";
     }
 
 //    @PostMapping("/posts/comment")
